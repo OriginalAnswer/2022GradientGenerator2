@@ -23,8 +23,8 @@
         .drop{
             --timing2: 1.8s ease;
             --op:1;
-            --tr-y: translateY(-30%);
-            --bottom: -60%;}
+            --tr-y: translateY(-50%);
+            --bottom: -155%;}
         /* +++++++++++++++ */
         *{
             background-color: #fff;
@@ -48,7 +48,7 @@
 
         #bg,.container,.s1,.s1 div,.s2,.s3,.s3,.ctrl,.ctrl-clr{display: flex;align-items: center;justify-content: center;}
         #bg,.container,.s1,.s1 div,.s3,.ctrl{flex-direction: column;}
-        .container,.s1,.s2,.s3,.ctrl,#color-code{border-radius: 40px;}
+        .container,.s1,.s2,.s3,.ctrl,.ctrl-deg,#color-code{border-radius: 40px;}
         .s2,#color-code{cursor: pointer;}
         .container,.s2 i{transition: transform var(--timing);}
 
@@ -76,30 +76,31 @@
         /* 트렌지션++++++++++++++++++++++++++++ */
         
         .s3 .ctrl-clr,#color-code{
-            /* opacity: var(--op); */
+            opacity: var(--op);
             transition: opacity var(--timing2);}
         /* ++++++++++++++++++++++++++++++++++++ */
         .s3{
-            /* z-index: -1; */
+            z-index: -1;
             position: var(--position);
             bottom: var(--bottom);
             transition: bottom var(--timing);
-            width: 270px;padding-top: 15px;}
+            width: 270px;padding: 20px 0;}
 
         .s3 .ctrl-deg{
             width: 100%;
-            background-color: #ffb69e;
+            padding: 10px 0;
         }
         .s3 .ctrl-deg button{
+            box-shadow: 5px 5px 20px #f0f0f0;
             border-radius: 20px;
-            margin: 10px;
+            margin: 10px 28px;
             width: 60px;height: 60px;
         }
         .s3 .ctrl-deg i { 
             background-color: rgba(0,0,0,0);
         }
         .s3 .ctrl-clr{
-            padding-top: 50px;
+            padding: 10px;
             width: 100%;}
 
         .s3 .ctrl-clr .c2{
@@ -134,23 +135,23 @@
                 </section>
             </label>
             <section class="s3" id="s3">
+                <div id="color-code" onclick="copy()">Linear Gradient</div>
                 <div class="ctrl">
-                    <div class="ctrl-deg">
-                        <button onclick="clr()" value="0"><i class="fas fa-arrow-up" style="transform: rotate(0deg);"></i></button>
-                        <button onclick="clr()" value="45"><i class="fas fa-arrow-up"style="transform: rotate(45deg);"></i></button>
-                        <button onclick="clr()" value="90"><i class="fas fa-arrow-up"style="transform: rotate(90deg);"></i></button>
-                        <button onclick="clr()" value="135"><i class="fas fa-arrow-up"style="transform: rotate(135deg);"></i></button>
-                        <button onclick="clr()" value="180"><i class="fas fa-arrow-up"style="transform: rotate(180deg);"></i></button>
-                        <button onclick="clr()" value="225"><i class="fas fa-arrow-up"style="transform: rotate(225deg);"></i></button>
-                        <button onclick="clr()" value="270"><i class="fas fa-arrow-up"style="transform: rotate(270deg);"></i></button>
-                        <button onclick="clr()" value="315"><i class="fas fa-arrow-up"style="transform: rotate(315deg);"></i></button>
-                    </div>
                     <div class="ctrl-clr">
                         <input onchange="clr()" value="#ffb69e" type="color" name="color1" id="color1" class="c1">
                         <input onchange="clr()" value="#e8e8e8" type="color" name="color2" id="color2" class="c2">
                     </div>
+                    <div class="ctrl-deg">
+                        <button onclick="clr()" value="0"><i onclick="clr()" value="0"class="fas fa-arrow-up" style="transform: rotate(0deg);"></i></button>
+                        <button onclick="clr()" value="45"><i onclick="clr()" value="45" class="fas fa-arrow-up"style="transform: rotate(45deg);"></i></button>
+                        <button onclick="clr()" value="90"><i onclick="clr()" value="90" class="fas fa-arrow-up"style="transform: rotate(90deg);"></i></button>
+                        <button onclick="clr()" value="135"><i onclick="clr()" value="135" class="fas fa-arrow-up"style="transform: rotate(135deg);"></i></button>
+                        <button onclick="clr()" value="180"><i onclick="clr()" value="180" class="fas fa-arrow-up"style="transform: rotate(180deg);"></i></button>
+                        <button onclick="clr()" value="225"><i onclick="clr()" value="225" class="fas fa-arrow-up"style="transform: rotate(225deg);"></i></button>
+                        <button onclick="clr()" value="270"><i onclick="clr()" value="270" class="fas fa-arrow-up"style="transform: rotate(270deg);"></i></button>
+                        <button onclick="clr()" value="315"><i onclick="clr()" value="315" class="fas fa-arrow-up"style="transform: rotate(315deg);"></i></button>
+                    </div>
                 </div>
-                <div id="color-code" onclick="copy()">Linear Gradient</div>
             </section>
         </section>
     </main>
@@ -160,7 +161,6 @@
         const cc = document.getElementById("color-code");
         const container = document.getElementById("container");
         const dp = document.getElementById("dp");
-        const checkbox = document.getElementById("arw");
         
         function drop(){
             const s3 = document.getElementById('s3');
@@ -171,13 +171,12 @@
         function clr(){
             const c1 = document.getElementById('color1').value;
             const c2 = document.getElementById('color2').value;
-            console.log(event);
-
-            bg.style.background = `linear-gradient(${c1},${c2})`;
-            dp.style.background = `linear-gradient(${c1},${c2})`;
+            const dg = event.target.value
+            
+            bg.style.background = `linear-gradient(${dg}deg,${c1},${c2})`;
+            dp.style.background = `linear-gradient(${dg}deg,${c1},${c2})`;
             cc.style.fontWeight = 'bold';
-
-            cc.innerHTML = `background : linear-gradient(${deg}deg,${c1}, ${c2});`;
+            cc.innerHTML = `background : linear-gradient(${dg}deg, ${c1}, ${c2});`;
             }
         
         function copy(){
