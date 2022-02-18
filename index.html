@@ -6,8 +6,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="https://kit.fontawesome.com/e4704dcbbd.js" crossorigin="anonymous"></script>
     <title>CSS Gradient 2 2022</title>
-    <!-- <link href="https://fonts.googleapis.com/css3?family=Montserrat&display=swap" rel="stylesheet"> -->
     <style>
+        @import url('https://fonts.googleapis.com/css2?family=Montserrat&display=swap');
         :root{
             --c1:#ffb69e;
             --c2:#e8e8e8;
@@ -141,7 +141,7 @@
                 </section>
             </label>
             <section class="s3" id="s3">
-                <div id="color-code" onclick="copy()">Linear Gradient</div>
+                <div id="color-code" onclick="copy()">Change Gradient!</div>
                 <div class="ctrl">
                     <div class="ctrl-clr">
                         <input onchange="clr()" value="#ffb69e" type="color" name="color1" id="color1" class="c1">
@@ -177,22 +177,20 @@
         function clr(){
             const c1 = document.getElementById('color1').value;
             const c2 = document.getElementById('color2').value;
-            dg=0;
+            dg = 0;
             if (event.target.value < 366) {
                 dg = event.target.value;
             };
 
             bg.style.background = `linear-gradient(${dg}deg,${c1},${c2})`;
             dp.style.background = `linear-gradient(${dg}deg,${c1},${c2})`;
-            cc.style.fontWeight = 'bold';
+            // cc.style.fontWeight = 'bold';
             cc.innerHTML = `background : linear-gradient(${dg}deg, ${c1}, ${c2});`;
             }
         
         function copy(){
             navigator.clipboard.writeText(cc.innerText).then(function(){alert( cc.innerText + " is copied!")});
         }
-        clr();
-    </script>
-    
+    </script>    
 </body>
 </html>
