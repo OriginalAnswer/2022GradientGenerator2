@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="https://kit.fontawesome.com/e4704dcbbd.js" crossorigin="anonymous"></script>
-    <title>CSS Gradient 2022</title>
+    <title>CSS Gradient 2 2022</title>
     <!-- <link href="https://fonts.googleapis.com/css3?family=Montserrat&display=swap" rel="stylesheet"> -->
     <style>
         :root{
@@ -46,9 +46,9 @@
 
 
 
-        #bg,.container,.s1,.s1 div,.s2,.s3,.s3 .ctrl{display: flex;align-items: center;justify-content: center;}
-        #bg,.container,.s1,.s1 div,.s3{flex-direction: column;}
-        .container,.s1,.s2,.s3,#color-code{border-radius: 40px;}
+        #bg,.container,.s1,.s1 div,.s2,.s3,.s3,.ctrl,.ctrl-clr{display: flex;align-items: center;justify-content: center;}
+        #bg,.container,.s1,.s1 div,.s3,.ctrl{flex-direction: column;}
+        .container,.s1,.s2,.s3,.ctrl,#color-code{border-radius: 40px;}
         .s2,#color-code{cursor: pointer;}
         .container,.s2 i{transition: transform var(--timing);}
 
@@ -75,22 +75,34 @@
         #arw:checked + label #arrow {transform: rotate(-180deg);}
         /* 트렌지션++++++++++++++++++++++++++++ */
         
-        .s3 .ctrl,#color-code{
-            opacity: var(--op);
+        .s3 .ctrl-clr,#color-code{
+            /* opacity: var(--op); */
             transition: opacity var(--timing2);}
         /* ++++++++++++++++++++++++++++++++++++ */
         .s3{
-            z-index: -1;
+            /* z-index: -1; */
             position: var(--position);
             bottom: var(--bottom);
             transition: bottom var(--timing);
             width: 270px;padding-top: 15px;}
 
-        .s3 .ctrl{
+        .s3 .ctrl-deg{
+            width: 100%;
+            background-color: #ffb69e;
+        }
+        .s3 .ctrl-deg button{
+            border-radius: 20px;
+            margin: 10px;
+            width: 60px;height: 60px;
+        }
+        .s3 .ctrl-deg i { 
+            background-color: rgba(0,0,0,0);
+        }
+        .s3 .ctrl-clr{
             padding-top: 50px;
             width: 100%;}
 
-        .s3 .ctrl .c2{
+        .s3 .ctrl-clr .c2{
             margin-left: 50px;}
 
         input[type='color']::-webkit-color-swatch{
@@ -123,10 +135,21 @@
             </label>
             <section class="s3" id="s3">
                 <div class="ctrl">
-                    <input onchange="clr()" value="#ffb69e" type="color" name="color1" id="color1" class="c1">
-                    <input onchange="clr()" value="#e8e8e8" type="color" name="color2" id="color2" class="c2">
+                    <div class="ctrl-deg">
+                        <button onclick="clr()" value="0"><i class="fas fa-arrow-up" style="transform: rotate(0deg);"></i></button>
+                        <button onclick="clr()" value="45"><i class="fas fa-arrow-up"style="transform: rotate(45deg);"></i></button>
+                        <button onclick="clr()" value="90"><i class="fas fa-arrow-up"style="transform: rotate(90deg);"></i></button>
+                        <button onclick="clr()" value="135"><i class="fas fa-arrow-up"style="transform: rotate(135deg);"></i></button>
+                        <button onclick="clr()" value="180"><i class="fas fa-arrow-up"style="transform: rotate(180deg);"></i></button>
+                        <button onclick="clr()" value="225"><i class="fas fa-arrow-up"style="transform: rotate(225deg);"></i></button>
+                        <button onclick="clr()" value="270"><i class="fas fa-arrow-up"style="transform: rotate(270deg);"></i></button>
+                        <button onclick="clr()" value="315"><i class="fas fa-arrow-up"style="transform: rotate(315deg);"></i></button>
+                    </div>
+                    <div class="ctrl-clr">
+                        <input onchange="clr()" value="#ffb69e" type="color" name="color1" id="color1" class="c1">
+                        <input onchange="clr()" value="#e8e8e8" type="color" name="color2" id="color2" class="c2">
+                    </div>
                 </div>
-                
                 <div id="color-code" onclick="copy()">Linear Gradient</div>
             </section>
         </section>
@@ -148,12 +171,13 @@
         function clr(){
             const c1 = document.getElementById('color1').value;
             const c2 = document.getElementById('color2').value;
+            console.log(event);
 
             bg.style.background = `linear-gradient(${c1},${c2})`;
             dp.style.background = `linear-gradient(${c1},${c2})`;
             cc.style.fontWeight = 'bold';
 
-            cc.innerHTML = `background : linear-gradient(${c1}, ${c2});`;
+            cc.innerHTML = `background : linear-gradient(${deg}deg,${c1}, ${c2});`;
             }
         
         function copy(){
