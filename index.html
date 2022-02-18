@@ -18,6 +18,7 @@
             --timing2: .5s ease;
             --op: 0;
         }
+        ::-webkit-scrollbar {display: none}
         
         /* +++++++++++++++ */
         .drop{
@@ -182,7 +183,9 @@
             dg = 0;
             if (event.target.value < 366) {
                 dg = event.target.value;
-            };
+            } else if (event.target.value === undefined) {
+                dg = event.target.parentNode.value;
+            }
 
             bg.style.background = `linear-gradient(${dg}deg,${c1},${c2})`;
             dp.style.background = `linear-gradient(${dg}deg,${c1},${c2})`;
